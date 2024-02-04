@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.hefengweather.ui.weather.HeFengViewModel" />
+    </data>
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/hefengDrawer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:refreshing="@{viewModel.loading}"
+            app:onRefreshListener="@{() -> viewModel.getHefengNow()}">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Button
+                    android:id="@+id/homeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:textSize="30sp"
+                    android:text="选择区域"
+                    android:background="@android:color/holo_blue_light"/>
+
+                <TextView
+                    android:id="@+id/currentAreatv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/homeButton"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="30sp"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:text="@{viewModel.currentAreaName}"/>
+
+                <TextView
+                    android:id="@+id/temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="30sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginLeft="100dp"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.heFengNow.now.temperature}"/>
+
+                <TextView
+                    android:id="@+id/descript"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="30sp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintLeft_toRightOf="@id/temperature"
+                    android:layout_marginTop="300dp"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.heFengNow.now.descript}"/>
+
+                <TextView
+                    android:id="@+id/winddir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="30sp"
+                    app:layout_constraintTop_toBottomOf="@id/temperature"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="100dp"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.heFengNow.now.windDir}"/>
+
+                <TextView
+                    android:id="@+id/windscale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="50dp"
+                    android:textSize="30sp"
+                    app:layout_constraintTop_toBottomOf="@id/temperature"
+                    app:layout_constraintLeft_toRightOf="@id/winddir"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:gravity="center_vertical"
+                    android:text="@{viewModel.heFengNow.now.windScale}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <fragment
+            android:name="com.example.hefengweather.ui.area.HeFengAreaFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+
+</layout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.hefengweather.ui.area.HeFengAreaModel"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:text="返回上一级"
+            android:textColor="@android:color/holo_blue_bright"
+            android:textSize="40sp"
+            android:onClick="@{()->viewModel.back()}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/backButton"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="30dp"
+            android:textSize="40sp"
+            android:textColor="@android:color/holo_blue_bright"
+            android:text="@{viewModel.areaData.name ,default = 暂无地区0}"/>
+
+        <ListView
+            android:id="@+id/heFengAreaList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@android:color/holo_orange_light"
+            android:layout_marginTop="80dp"
+            bind:onItemClickListener="@{(parent, view, position, id) -> viewModel.onItemClick(position)}"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

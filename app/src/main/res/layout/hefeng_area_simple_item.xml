@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="data" type="com.example.hefengweather.data.model.area.AreaData" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical"
+        android:background="@android:color/holo_blue_light">
+
+        <TextView
+            android:id="@+id/simple_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.name}"
+            android:layout_marginLeft="30dp"
+            android:textSize="30sp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{data.level}"
+            android:textSize="30sp"
+            android:layout_marginLeft="30dp"
+            android:padding="10dp"/>
+
+    </LinearLayout>
+
+</layout>
