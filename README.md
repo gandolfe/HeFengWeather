@@ -1,0 +1,2 @@
+基于高德行政区域API、和风天气API接口实现的一个天气查询应用，使用kotlin编写，使用MVVM架构模式。
+此项目可以学习kotlin的协程和其他语言特性，如：高阶拓展函数、伴身对象等；学习更加解耦合的jetpack组件：livedata、databinding、lifecycle，让程序编写更加简洁高效
