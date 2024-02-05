@@ -27,6 +27,8 @@ object HeFengNetwork {
 
     suspend fun fetchFefengLocation(adcode: String) = heFengGeoService.getLocationId(adcode, KEY).await()
 
+    // 此扩展函数的目的，是让Retrofit的Call对象放在一个协程中处理，在协程中处理网络异步请求，不阻塞线程
+    // suspendCoroutine函数是Kotlin协程库提供的一个函数，用来挂起当前协程，并通过内部的参数continuation来恢复协程
     private suspend fun <T> Call<T>.await() : T {
         return suspendCoroutine {
             enqueue(object : Callback<T> {

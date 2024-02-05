@@ -44,9 +44,11 @@ class HefengRepository private constructor(private val hefengDao: HefengDao, pri
     }
 
 
-
+    // 通过伴身对象实现静态变量
+    // 这里为什么不用by lazy委托延迟初始化的方式？
+    // 这是因为by lazy的方式只适用于不带参数的构造函数的单例模式
     companion object {
-
+        // lateinit只能使用于var定义的非空类型的变量；by lazy只能适用于val定义的常量
         private lateinit var instance: HefengRepository
 
         fun getInstance(hefengDao: HefengDao, hefengNetWork: HeFengNetwork): HefengRepository {

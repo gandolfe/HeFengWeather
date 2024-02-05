@@ -60,6 +60,10 @@ class HeFengViewModel(private val repository: HefengRepository) : ViewModel() {
         })
     }
 
+    // 这个函数的目的是把异步操作包装在协程中，并提供一个错误处理机制
+    // 这是一个高阶函数
+    // viewModelScope.launch 函数用于创建并启动一个新的协程，以异步执行一段代码块，不会阻塞当前主线程
+    // viewModelScope是属于ViewModel的扩展属性，方便在ViewModel中使用协程，并且可以监测Activity或者Fragment的生命周期，然后自动取消，避免内存泄漏
     private fun launch(block: suspend () -> Unit, error: suspend (Throwable) -> Unit) {
         viewModelScope.launch {
             try {
